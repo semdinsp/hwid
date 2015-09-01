@@ -18,9 +18,10 @@ module Hwid
     end
     def systemid
       rasp=(/arm-linux/ =~ RUBY_PLATFORM) != nil
+      rasp2=(/armv7l-linux/ =~ RUBY_PLATFORM) != nil
       mac=(/darwin/ =~ RUBY_PLATFORM) != nil
       linux=(/linux/ =~ RUBY_PLATFORM) != nil
-      return get_rasp_id if rasp
+      return get_rasp_id if rasp or rasp2
       return get_mac_id if mac
       return get_linux_id if linux
     end
