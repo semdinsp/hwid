@@ -31,6 +31,7 @@ module Hwid
       platform=get_platform
       puts "platform is #{platform} #{RUBY_PLATFORM}"
       return get_rasp_id if platform.include?("raspberry")
+      return get_rasp_id if platform.include?("raspberry 2")
       return get_mac_id if platform.include?("mac")
       return get_linux_id if platform.include?("linux")
     end
