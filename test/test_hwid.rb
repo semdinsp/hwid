@@ -11,6 +11,7 @@ class HwidTest <  Minitest::Test
   
   def test_basic
     assert @f!=nil, "should be created"
+    puts "PLATFORM #{@f.get_platform}"
   end
   def test_prase
     @f.parse('Serial: 1234')
