@@ -22,8 +22,9 @@ module Hwid
     # returns array of platforms
     def get_platform
       platform=[]
-      platform << "raspberry" if (/arm-linux/ =~ RUBY_PLATFORM) != nil
-      platform << "raspberry 2" if (/armv7l-linux/ =~ RUBY_PLATFORM) != nil
+      platform << "raspberry" if (/arm-linux/ =~ RUBY_PLATFORM) != nil and `uname -a`.include?('armv6')
+      platform << "raspberry" if `uname -a`.include?('armv6')
+      platform << "raspberry 2" if (/armv7l-linux/ =~ RUBY_PLATFORM) != nil and !`uname -a`.include?('armv6')
       platform << "mac" if (/darwin/ =~ RUBY_PLATFORM) != nil
       platform << "arm" if (/arm/ =~ RUBY_PLATFORM) != nil
       platform << "x86" if (/x86/ =~ RUBY_PLATFORM) != nil
