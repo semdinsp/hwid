@@ -25,7 +25,7 @@ class HwidTest <  Minitest::Test
   end
   def test_class
      assert Hwid.systemid!='unknown', "return id is #{Hwid.systemid}"
-    
+     assert Hwid.platform!='unknown', "return id is #{Hwid.platform}"
   end
   def test_run_cmd
      d =@f.run_cmd('date')

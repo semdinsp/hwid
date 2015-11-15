@@ -4,6 +4,9 @@ module Hwid
   def self.systemid
     Hwid::Base.new.systemid
   end
+  def self.platform
+    Hwid::Base.new.get_platform
+  end
   class Base
     attr_accessor :systemid
   
@@ -29,7 +32,7 @@ module Hwid
     end
     def systemid
       platform=get_platform
-      puts "platform is #{platform} #{RUBY_PLATFORM}"
+      # puts "platform is #{platform} #{RUBY_PLATFORM}"
       return get_rasp_id if platform.include?("raspberry")
       return get_rasp_id if platform.include?("raspberry 2")
       return get_mac_id if platform.include?("mac")
