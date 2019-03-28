@@ -65,7 +65,7 @@ module Hwid
       res="Serial: unknown"
       # lshw -quiet -class cpu -disable usb -disable network -disable pci -disable cpuinfo -disable dmi -disable memory -disable isapnp -disable ide -disable device-tree -disable spd | grep -oP '(serial: )\K.*
       # res=run_cmd("lshw -quiet -class cpu -disable usb -disable network -disable pci -disable cpuinfo -disable dmi -disable memory -disable isapnp -disable ide -disable device-tree -disable spd | grep -oP '(serial: )\\K.*'")
-      res=run_cmd(" lshw -quiet -class cpu -class network -disable usb -disable pci -disable cpuinfo -disable dmi -disable memory -disable isapnp -disable ide -disable device-tree -disable spd | grep -oP '(serial: )\K.*'")
+      res=run_cmd("lshw -quiet -class cpu -class network -disable usb -disable pci -disable cpuinfo -disable dmi -disable memory -disable isapnp -disable ide -disable device-tree -disable spd | grep -oP '(serial: )\\K.*'")
       res=res.gsub("0000-","")
       res=res.gsub("\n","")
       #res=run_cmd("lshw | grep -A 10 '*-cpu' | grep -oP '(serial: )\\K.*'")
