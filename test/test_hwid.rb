@@ -1,9 +1,9 @@
 puts File.dirname(__FILE__)
 #require File.dirname(__FILE__) + '/test_helper.rb' 
+require 'rubygems'
 require File.expand_path("../test_helper", __FILE__)
 #require File.dirname(__FILE__) + '/test_helper.rb' 
 #require  'test_helper.rb' 
-require  'test_helper' 
 
 
 class HwidTest <  Minitest::Test
