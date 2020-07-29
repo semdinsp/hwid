@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hwid (0.3.1)
+    hwid (0.3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -9,8 +9,8 @@ GEM
     codeclimate-test-reporter (1.0.9)
       simplecov (<= 0.13)
     docile (1.1.5)
-    json (2.2.0)
-    minitest (5.11.3)
+    json (2.3.1)
+    minitest (5.14.1)
     simplecov (0.13.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -26,7 +26,7 @@ DEPENDENCIES
   minitest
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.6.6p146
 
 BUNDLED WITH
    1.17.3
