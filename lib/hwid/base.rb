@@ -22,6 +22,8 @@ module Hwid
     # returns array of platforms
     def get_platform
       platform=[]
+      testos=`uname -a`
+   #   puts "osname is #{testos}"
       platform << "raspberry" if (/arm-linux/ =~ RUBY_PLATFORM) != nil and `uname -a`.include?('armv6')
       platform << "raspberry" if `uname -a`.include?('armv6')
       platform << "raspberry 2" if (/armv7l-linux/ =~ RUBY_PLATFORM) != nil and !`uname -a`.include?('armv6')
@@ -29,15 +31,15 @@ module Hwid
       platform << "arm" if (/arm/ =~ RUBY_PLATFORM) != nil
       platform << "x86" if (/x86/ =~ RUBY_PLATFORM) != nil
       platform << "i686" if (/i686/ =~ RUBY_PLATFORM) != nil
-      platform << "debian" if  `uname -a`.include?('Debian')
-      platform << "microsoft" if `uname -a`.include?('Microsoft')
-      platform << "ubuntu" if  `uname -a`.include?('Ubuntu')
+      platform << "microsoft" if testos.include?('Microsoft')
+      platform << "debian" if  testos.include?('Debian')
+      platform << "ubuntu" if  testos.include?('Ubuntu')
       platform << "linux" if (/linux/ =~ RUBY_PLATFORM) != nil
       platform
     end
     def systemid
       platform=get_platform
-      puts "debug: platform is #{platform} #{RUBY_PLATFORM}"
+   #   puts "debug: platform is #{platform} #{RUBY_PLATFORM}"
       return get_rasp_id if platform.include?("raspberry")
       return get_rasp_id if platform.include?("raspberry 2")
       return get_mac_id if platform.include?("mac")

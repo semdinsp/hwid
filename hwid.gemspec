@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "hwid"
-  s.version     = "0.4.1"
+  s.version     = "0.4.5"
   s.author      = "Scott Sproule"
   s.email       = "scott.sproule@ficonab.com"
   s.homepage    = "http://github.com/semdinsp/hwid"
