@@ -30,16 +30,18 @@ module Hwid
       platform << "x86" if (/x86/ =~ RUBY_PLATFORM) != nil
       platform << "i686" if (/i686/ =~ RUBY_PLATFORM) != nil
       platform << "debian" if  `uname -a`.include?('Debian')
+      platform << "microsoft" if `uname -a`.include?('Microsoft')
       platform << "ubuntu" if  `uname -a`.include?('Ubuntu')
       platform << "linux" if (/linux/ =~ RUBY_PLATFORM) != nil
       platform
     end
     def systemid
       platform=get_platform
-      # puts "platform is #{platform} #{RUBY_PLATFORM}"
+      puts "debug: platform is #{platform} #{RUBY_PLATFORM}"
       return get_rasp_id if platform.include?("raspberry")
       return get_rasp_id if platform.include?("raspberry 2")
       return get_mac_id if platform.include?("mac")
+      return get_windows_id if platform.include?("microsoft")
       return get_linuxdebian_id if platform.include?("debian")  #virtaul box ??
       return get_linuxdebian_id if platform.include?("ubuntu")  #virtaul box ??
       return get_linux_id if platform.include?("linux")
@@ -57,8 +59,22 @@ module Hwid
       res=run_cmd('grep Serial  /proc/cpuinfo')
       self.parse(res)
     end
+    def get_windows_id
+      puts "running windows linux sigh"
+      res=run_cmd("lshw -quiet -class network -disable usb   -disable spd | grep -oP '(serial: )\\K.*'")
+      res=res.gsub("0000-","")
+      res=res.gsub(":","")
+      res=res.gsub("\n","")
+      res=res.gsub(" ","")
+      #res=run_cmd("lshw | grep -A 10 '*-cpu' | grep -oP '(serial: )\\K.*'")
+      #puts "Interim result is #{res.inspect}"
+      res=res.chomp
+      puts "windows command result: #{res}"
+      res
+    end
+    
     def get_mac_id
-      res=run_cmd('/usr/sbin/system_profiler SPHardwareDataType -timeout 0 | grep Serial')
+      res=run_cmd('/usr/sbin/system_profiler SPHardwareDataType -timeout 5 | grep Serial')
       self.parse(res)
     end
     def get_linuxdebian_id

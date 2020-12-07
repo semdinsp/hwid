@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hwid (0.3.2)
+    hwid (0.4.0)
 
 GEM
   remote: https://rubygems.org/
